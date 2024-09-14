@@ -40,7 +40,7 @@ with open(ver_path) as ver_file:
     exec(ver_file.read(), main_ns)
 
 setup(
-    name="charlatan",
+    name="ciarlare",
     version=main_ns["__version__"],
     author="Charles-Axel Dein",
     author_email="charles@uber.com",
