@@ -33,7 +33,6 @@ if PY3:
 else:
     string_types = basestring,  # noqa
 
-
 if PY3:
     _iteritems = "items"
     _itervalues = "values"

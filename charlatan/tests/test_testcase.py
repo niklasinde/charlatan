@@ -7,7 +7,6 @@ from charlatan import testing
 from charlatan import FixturesManager
 from charlatan.builder import Builder
 
-
 fixtures_manager = FixturesManager()
 fixtures_manager.load(
     './charlatan/tests/data/relationships_without_models.yaml')

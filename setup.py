@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import sys
+from distutils.cmd import Command
+from distutils.util import convert_path
 
 from setuptools import setup
-from setuptools.command.test import test as TestCommand
 
 
 def read_long_description(filename="README.rst"):
@@ -15,38 +16,47 @@ def read_requirements(filename="requirements.txt"):
         return f.readlines()
 
 
-class PyTest(TestCommand):
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
+class PyTest(Command):
+    test_args = []
+    test_suite = True
+    user_options = [("rt", "r", "run_test")]
+
+    def initialize_options(self):
         self.test_args = []
         self.test_suite = True
 
-    def run_tests(self):
+    def finalize_options(self):
+        pass
+
+    def run(self):
         import pytest
         errcode = pytest.main(self.test_args)
         sys.exit(errcode)
 
+
+main_ns = {}
+ver_path = convert_path('charlatan/version.py')
+with open(ver_path) as ver_file:
+    exec(ver_file.read(), main_ns)
+
 setup(
     name="charlatan",
-    version='0.4.8.dev0',
+    version=main_ns["__version__"],
     author="Charles-Axel Dein",
     author_email="charles@uber.com",
     license="MIT",
-    tests_require=['pytest'],
     cmdclass={'test': PyTest},
     url="https://github.com/uber/charlatan",
     packages=["charlatan"],
     keywords=["tests", "fixtures", "database"],
     description="Efficiently manage and install data fixtures",
     long_description=read_long_description(),
-    install_requires=["PyYAML>=3.10", "pytz"],
+    install_requires=["PyYAML>=3.10", "pytz"] + ['pytest'],
     zip_safe=False,
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.9+",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",

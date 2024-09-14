@@ -17,10 +17,8 @@ list_of_relationships:
 nested_list_of_relationships:
   fields:
     dicts:
-      -
-        - !rel dict_with_nest
-      -
-        - !rel simple_dict
+      - - !rel dict_with_nest
+      - - !rel simple_dict
 
 parent_dict:
   objects:

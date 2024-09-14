@@ -1,12 +1,12 @@
 # If you add a lib here, please include a short description of what it's doing
 
 # Documentation
-Sphinx==1.3b2
+Sphinx==7.4.7
 # Releaser tool
 zest.releaser==5.5
 # Package checking
-pyroma==1.6
+pyroma==4.2
 # Check packages version
-pip-tools==0.3.4
+pip-tools==7.4.1
 # Better pdb
-ipdb==0.8
+ipdb==0.13.13

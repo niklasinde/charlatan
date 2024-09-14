@@ -4,7 +4,7 @@ import functools
 import itertools
 import operator
 import re
-import collections
+from collections.abc import Sequence, Mapping
 
 from charlatan import _compat
 
@@ -21,23 +21,23 @@ def get_timedelta(delta):
     >>> get_timedelta("")
     datetime.timedelta(0)
     >>> get_timedelta("+1h")
-    datetime.timedelta(0, 3600)
+    datetime.timedelta(seconds=3600)
     >>> get_timedelta("+10h")
-    datetime.timedelta(0, 36000)
+    datetime.timedelta(seconds=36000)
     >>> get_timedelta("-10d")
-    datetime.timedelta(-10)
+    datetime.timedelta(days=-10)
     >>> get_timedelta("+1m")
-    datetime.timedelta(30)
+    datetime.timedelta(days=30)
     >>> get_timedelta("-1y")
-    datetime.timedelta(-365)
+    datetime.timedelta(days=-365)
     >>> get_timedelta("+10d2h")
-    datetime.timedelta(10, 7200)
+    datetime.timedelta(days=10, seconds=7200)
     >>> get_timedelta("-10d2h")
-    datetime.timedelta(-11, 79200)
+    datetime.timedelta(days=-11, seconds=79200)
     >>> get_timedelta("-21y2m1d24h")
-    datetime.timedelta(-7727)
+    datetime.timedelta(days=-7727)
     >>> get_timedelta("+5M")
-    datetime.timedelta(0, 300)
+    datetime.timedelta(seconds=300)
 
     """
     if not delta:
@@ -82,13 +82,13 @@ def extended_timedelta(**kwargs):
     number of days, months and years.
 
     >>> extended_timedelta(months=1)
-    datetime.timedelta(30)
+    datetime.timedelta(days=30)
     >>> extended_timedelta(years=1)
-    datetime.timedelta(365)
+    datetime.timedelta(days=365)
     >>> extended_timedelta(days=1, months=1, years=1)
-    datetime.timedelta(396)
+    datetime.timedelta(days=396)
     >>> extended_timedelta(hours=1)
-    datetime.timedelta(0, 3600)
+    datetime.timedelta(seconds=3600)
     """
     number_of_days = {
         "days": 1,
@@ -144,6 +144,7 @@ def datetime_to_epoch_in_ms(a_datetime):
 
 def copy_docstring_from(klass):
     """Copy docstring from another class, using the same function name."""
+
     def wrapper(func):
         func.__doc__ = getattr(klass, func.__name__).__doc__
 
@@ -184,9 +185,9 @@ def is_sqlalchemy_model(instance):
 def richgetter(obj, path):
     """Return a attrgetter + item getter."""
     for name in path.split("."):
-        if isinstance(obj, collections.Mapping):
+        if isinstance(obj, Mapping):
             obj = obj[name]
-        elif isinstance(obj, collections.Sequence):
+        elif isinstance(obj, Sequence):
             obj = obj[int(name)]  # force int type for list indexes
         else:
             obj = getattr(obj, name)
@@ -201,7 +202,7 @@ def deep_update(source, overrides):
     """
     # http://stackoverflow.com/questions/3232943/update-value-of-a-nested-dictionary-of-varying-depth  # noqa
     for key, value in _compat.iteritems(overrides):
-        if isinstance(value, collections.Mapping) and value:
+        if isinstance(value, Mapping) and value:
             returned = deep_update(source.get(key, {}), value)
             source[key] = returned
         else:

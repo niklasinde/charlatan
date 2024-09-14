@@ -4,17 +4,15 @@ import datetime
 import pytz
 import yaml
 from yaml.constructor import Constructor
-
+from yaml import Loader
 from charlatan.utils import datetime_to_epoch_in_ms
 from charlatan.utils import datetime_to_epoch_timestamp
 from charlatan.utils import get_timedelta
-
 
 TIMEZONE_AWARE = True
 
 
 class RelationshipToken(str):
-
     """Class used to mark relationships.
 
     This token is used to mark relationships found in YAML file, so that they
@@ -25,7 +23,6 @@ class RelationshipToken(str):
 
 
 class UnnamedRelationshipToken(dict):
-
     """Class used to mark unamed relationships.
 
     This token is used to mark relationships found in YAML file, so that they
@@ -35,8 +32,9 @@ class UnnamedRelationshipToken(dict):
     pass
 
 
-def configure_yaml():
+def configure_yaml(yaml_loader):
     """Add some custom tags to the YAML constructor."""
+
     def now_constructor(loader, node):
         """Return a function that returns the current datetime."""
         delta = get_timedelta(loader.construct_scalar(node))
@@ -93,16 +91,11 @@ def configure_yaml():
         name = loader.construct_scalar(node)
         return RelationshipToken(name)
 
-    yaml.add_constructor(
-        u'!now', now_constructor, yaml.UnsafeLoader)
-    yaml.add_constructor(
-        u'!now_naive', now_naive_constructor, yaml.UnsafeLoader)
-    yaml.add_constructor(
-        u'!epoch_now', epoch_now_constructor, yaml.UnsafeLoader)
-    yaml.add_constructor(
-        u'!epoch_now_in_ms', epoch_now_in_ms_constructor, yaml.UnsafeLoader)
-    yaml.add_constructor(
-        u'!rel', relationship_constructor, yaml.UnsafeLoader)
+    yaml.add_constructor(u'!now', now_constructor, yaml_loader)
+    yaml.add_constructor(u'!now_naive', now_naive_constructor, yaml_loader)
+    yaml.add_constructor(u'!epoch_now', epoch_now_constructor, yaml_loader)
+    yaml.add_constructor(u'!epoch_now_in_ms', epoch_now_in_ms_constructor, yaml_loader)
+    yaml.add_constructor(u'!rel', relationship_constructor, yaml_loader)
 
 
 def configure_output(use_unicode=False):
@@ -111,23 +104,22 @@ def configure_output(use_unicode=False):
     :param bool use_unicode: Use unicode constructor for loading strings
     """
     if use_unicode:
-        yaml.add_constructor(
-            u'tag:yaml.org,2002:str',
-            Constructor.construct_python_unicode,
-        )
+        yaml.add_constructor(u'tag:yaml.org,2002:str',Constructor.construct_python_unicode)
 
 
-def load_file(filename, use_unicode=False):
+def load_file(filename, yaml_loader, use_unicode=False):
     """Load fixtures definition from file.
 
     :param str filename:
+    :param Any yaml_loader:
+    :param bool use_unicode:
     """
     with open(filename) as f:
         content = f.read()
 
     if filename.endswith(".yaml"):
         # Load the custom YAML tags
-        configure_yaml()
+        configure_yaml(yaml_loader=yaml_loader)
         configure_output(use_unicode=use_unicode)
         content = yaml.unsafe_load(content)
     else:

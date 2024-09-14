@@ -17,10 +17,3 @@ class TestCase(unittest.TestCase):
 
     def _post_teardown(self):
         pass
-
-    def assertCountEqual(self, *args, **kwargs):
-        # Raaa Python 3
-        try:
-            return unittest.TestCase.assertCountEqual(self, *args, **kwargs)
-        except AttributeError:
-            return self.assertItemsEqual(*args, **kwargs)

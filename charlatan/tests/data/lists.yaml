@@ -1,9 +1,7 @@
 fixture_list:
   objects:
-    -
-      field1: stuff
-    -
-      field1: more_stuff
+    - field1: stuff
+    - field1: more_stuff
 
 related_fixture:
   fields:

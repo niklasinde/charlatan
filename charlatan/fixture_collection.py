@@ -9,7 +9,6 @@ def _sorted_iteritems(dct):
 
 
 class FixtureCollection(Inheritable):
-
     """A FixtureCollection holds Fixture objects."""
 
     def __init__(self, key, fixture_manager,
@@ -62,8 +61,8 @@ class FixtureCollection(Inheritable):
         # First try to get the fixture from the cache
         instance = self.fixture_manager.cache.get(first_level)
         if (not overrides
-                and instance
-                and not isinstance(instance, FixtureCollection)):
+            and instance
+            and not isinstance(instance, FixtureCollection)):
             if not remaining_path:
                 return instance
             return utils.richgetter(instance, remaining_path)

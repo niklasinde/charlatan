@@ -77,7 +77,6 @@ class Inheritable(object):
 
 
 class Fixture(Inheritable):
-
     """Represent a fixture that can be installed."""
 
     def __init__(self, key, fixture_manager,
@@ -151,10 +150,8 @@ class Fixture(Inheritable):
         if self.database_id:
             object_class = self.get_class()
             # No need to create a new object, just get it from the db
-            instance = (
-                self.fixture_manager.session.query(object_class)
-                .get(self.database_id)
-            )
+            instance = self.fixture_manager.session.get(object_class, self.database_id)
+
 
         else:
             # We need to do a copy since we're modifying them.

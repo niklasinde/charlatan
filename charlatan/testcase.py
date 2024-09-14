@@ -4,7 +4,6 @@ from charlatan.fixtures_manager import make_list
 
 
 class FixturesManagerMixin(object):
-
     """Class from which test cases should inherit to use fixtures.
 
     .. versionchanged:: 0.3.12

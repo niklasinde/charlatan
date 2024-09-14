@@ -36,4 +36,4 @@ class TestRelationshipsWithoutModels(testing.TestCase,
         parent = self.install_fixture('parent_dict.object1')
         child = self.install_fixture('child_dict.object1')
 
-        self.assertEquals(child['field1'], parent['field1'])
+        self.assertEqual(child['field1'], parent['field1'])

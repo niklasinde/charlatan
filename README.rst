@@ -28,7 +28,7 @@ Installation
 
 Using `pip`::
 
-    $ pip install charlatan
+    $ pip install charlatan_new
 
 License
 -------

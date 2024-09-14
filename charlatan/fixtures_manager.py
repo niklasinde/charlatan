@@ -4,6 +4,8 @@ from itertools import chain
 import functools
 import os
 
+import yaml
+
 from charlatan import _compat
 from charlatan import builder
 from charlatan.depgraph import DepGraph
@@ -19,12 +21,11 @@ ROOT_COLLECTION = "root"
 def make_list(obj):
     """Return list of objects if necessary."""
     if isinstance(obj, _compat.string_types):
-        return (obj, )
+        return (obj,)
     return obj
 
 
-class FixturesManager(object):
-
+class FixturesManager:
     """
     Manage Fixture objects.
 
@@ -64,11 +65,13 @@ class FixturesManager(object):
             ROOT_COLLECTION,
             fixture_manager=self,
         )
+        self.depgraph = None
+        self.yaml_loader = yaml.UnsafeLoader
 
     def load(self, filenames, models_package=""):
-        """Pre-load the fixtures. Does not install anything.
+        """Preload the fixtures. Does not install anything.
 
-        :param list_or_str filename: file or list of files that holds the
+        :param list_or_str filenames: file or list of files that holds the
                                      fixture data
         :param str models_package: package holding the models definition
 
@@ -83,12 +86,16 @@ class FixturesManager(object):
         """
         self.filenames.append(filenames)
 
-        self.depgraph = self._load_fixtures(filenames,
-                                            models_package=models_package)
+        self.depgraph = self._load_fixtures(
+            filenames=filenames,
+            yaml_loader=self.yaml_loader,
+            models_package=models_package
+        )
         self.clean_cache()
 
-    def _get_namespace_from_filename(self, filename):
-        """Get a collection namespace from a fixtures filename.
+    @staticmethod
+    def _get_namespace_from_filename(filename):
+        """Get a collection namespace from a fixture's filename.
 
         :param str filename: filename to extract namespace from
         """
@@ -98,8 +105,8 @@ class FixturesManager(object):
 
         return segments[0]
 
-    def _load_fixtures(self, filenames, models_package=''):
-        """Pre-load the fixtures.
+    def _load_fixtures(self, filenames, yaml_loader, models_package=''):
+        """Preload the fixtures.
 
         :param list or str filenames: files that hold the fixture data
         :param str models_package:
@@ -115,21 +122,21 @@ class FixturesManager(object):
             raise IOError('File "%s" not found' % filenames)
 
         if len(globbed_filenames) == 1:
-            content = load_file(globbed_filenames[0], self.use_unicode)
+            content = load_file(globbed_filenames[0], yaml_loader=yaml_loader, use_unicode=self.use_unicode)
         else:
             content = {}
 
             for filename in globbed_filenames:
                 namespace = self._get_namespace_from_filename(filename)
                 content[namespace] = {
-                    "objects": load_file(filename, self.use_unicode)
+                    "objects": load_file(filename, yaml_loader=yaml_loader, use_unicode=self.use_unicode)
                 }
 
         if content:
             for k, v in _compat.iteritems(content):
 
                 if "objects" in v:
-                    # It's a collection of fictures.
+                    # It's a collection of fixtures.
                     collection = self._handle_collection(
                         namespace=k,
                         definition=v,
@@ -155,7 +162,8 @@ class FixturesManager(object):
         graph = self._check_cycle(self.collection)
         return graph
 
-    def _check_cycle(self, collection):
+    @staticmethod
+    def _check_cycle(collection):
         """Raise an exception if there's a relationship cycle."""
         d = DepGraph()
         for _, fixture in collection:
@@ -429,7 +437,6 @@ class FixturesManager(object):
     def get_all_fixtures(self, builder=None):
         """Get all fixtures.
 
-        :param iterable fixture_keys:
         :rtype: list of instantiated but unsaved fixtures
 
         .. versionadded:: 0.4.0

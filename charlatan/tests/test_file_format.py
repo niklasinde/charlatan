@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from sys import version_info
 import datetime
 
+import yaml
 from freezegun import freeze_time
 from yaml import add_constructor
 from yaml.constructor import SafeConstructor
@@ -18,7 +19,10 @@ from charlatan.utils import datetime_to_epoch_timestamp
 def test_non_yaml_file():
     """Verify that we can't open a non-YAML file."""
     with pytest.raises(ValueError):
-        file_format.load_file("./charlatan/tests/data/test.json")
+        file_format.load_file(
+            "./charlatan/tests/data/test.json",
+            yaml_loader=yaml.UnsafeLoader
+        )
 
 
 @freeze_time("2014-12-31 11:00:00")
@@ -28,7 +32,8 @@ class TestFileFormat(testing.TestCase):
         self.current_time = datetime.datetime.utcnow().replace(
             tzinfo=pytz.utc)
         self.yaml = file_format.load_file(
-            './charlatan/tests/data/special_tags.yaml'
+            './charlatan/tests/data/special_tags.yaml',
+            yaml_loader=yaml.UnsafeLoader
         )
 
     def test_now_tag(self):
@@ -83,6 +88,7 @@ class TestUnicodeLoad(testing.TestCase):
         ]
         self.yaml = file_format.load_file(
             './charlatan/tests/data/unicode.yaml',
+            yaml_loader=yaml.UnsafeLoader,
             use_unicode=True,
         )
 
@@ -90,29 +96,15 @@ class TestUnicodeLoad(testing.TestCase):
         # reset the constructor
         add_constructor(u'tag:yaml.org,2002:str', self.str_constructor)
 
-    @unittest.skipIf(version_info[0] == 3, 'Unicode is undefined in Python 3')
-    def test_strings_are_unicode(self):
-        """Assert all strings are loaded as unicode."""
-        for key, val in self.yaml.items():
-            self.assertTrue(isinstance(key, unicode))  # noqa
-            self.assertTrue(isinstance(val, unicode))  # noqa
-
 
 class TestStringLoad(testing.TestCase):
 
     def setUp(self):
         self.yaml = file_format.load_file(
             './charlatan/tests/data/strings.yaml',
+            yaml_loader=yaml.UnsafeLoader
         )
 
-    @unittest.skipIf(version_info[0] == 3, 'Iteration has changed in Python 3')
-    def test_strings_are_strings(self):
-        """Assert all strings are loaded as strings."""
-        for key, val in self.yaml.items():
-            self.assertTrue(isinstance(key, str))
-            self.assertTrue(isinstance(val, str))
-
-    @unittest.skipIf(version_info[0] == 2, 'Iteration has changed in Python 3')
     def test_strings_are_strings_python3(self):
         """Assert all strings are loaded as strings."""
         for key, val in list(self.yaml.items()):

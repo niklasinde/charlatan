@@ -1,7 +1,11 @@
+import os
+
 from charlatan import testing
 from charlatan import FixturesManager
 from charlatan.tests.fixtures.models import Session, Base, engine
 from charlatan.tests.fixtures.models import Toaster, Color
+
+root_dir = os.path.dirname(os.path.abspath(__file__))  # This is your Project Root
 
 
 class TestSqlalchemyFixtures(testing.TestCase):
@@ -9,7 +13,7 @@ class TestSqlalchemyFixtures(testing.TestCase):
     def setUp(self):
         self.session = Session()
         self.manager = FixturesManager(db_session=self.session)
-        self.manager.load("./charlatan/tests/data/relationships.yaml")
+        self.manager.load(f"{root_dir}/data/relationships.yaml")
 
         Base.metadata.create_all(engine)
 

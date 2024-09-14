@@ -1,7 +1,7 @@
 from charlatan.utils import is_sqlalchemy_model
 
 
-class Builder(object):
+class Builder:
 
     def __call__(self, fixtures, klass, params, **kwargs):
         """Build a fixture.

@@ -1,5 +1,3 @@
-
-
 class Toaster(object):
 
     def __init__(self, color, slots=2, content=None):
