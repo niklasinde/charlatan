@@ -27,3 +27,4 @@ freezegun
 # For tests
 sqlalchemy
 schematics
+setuptools
