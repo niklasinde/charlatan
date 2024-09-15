@@ -1,5 +1,5 @@
 toasters:
-  model: charlatan.tests.fixtures.simple_models:Toaster
+  model: ciarlare.tests.fixtures.simple_models:Toaster
 
   # Those are the default for all fixtures
   fields:
@@ -15,7 +15,7 @@ toasters:
 anonymous_toasters:
   inherit_from: toasters
 
-  # Here we define unamed fixtures. Note that we use a list instead of a dict.
+  # Here we define unnamed fixtures. Note that we use a list instead of a dict.
   objects:
     # You access the first fixture via anonymous_toaster.0
     -
@@ -32,7 +32,7 @@ collection:
     things: !rel toasters
 
 users:
-  model: charlatan.tests.fixtures.simple_models:User
+  model: ciarlare.tests.fixtures.simple_models:User
 
   objects:
 

@@ -3,9 +3,9 @@ File format
 
 .. testsetup:: *
 
-    from charlatan import FixturesManager
+    from ciarlare import FixturesManager
 
-charlatan only supports YAML at time of writing.
+ciarlare only supports YAML at time of writing.
 
 Fixtures are defined in a YAML file. Here is its general structure:
 
@@ -53,7 +53,7 @@ Fixtures can inherit from other fixtures.
 .. doctest::
 
     >>> import pprint
-    >>> from charlatan import FixturesManager
+    >>> from ciarlare import FixturesManager
     >>> manager = FixturesManager()
     >>> manager.load("docs/examples/fixtures_inheritance.yaml")
     >>> manager.get_fixture("first")
@@ -76,12 +76,12 @@ Fixtures can inherit from other fixtures.
 If your fields are dict, then the first-level key will override everything,
 unless you use ``deep_inherit``:
 
-.. literalinclude:: ../charlatan/tests/example/data/deep_inherit.yaml
+.. literalinclude:: ../ciarlare/tests/example/data/deep_inherit.yaml
     :language: yaml
 
 Example test:
 
-.. literalinclude:: ../charlatan/tests/example/test_deep_inherit.py
+.. literalinclude:: ../ciarlare/tests/example/test_deep_inherit.py
 
 .. versionadded:: 0.4.5
     You can use ``deep_inherit`` to trigger nested inheritance for dicts.
@@ -178,7 +178,7 @@ attribute (e.g. ``!rel toaster.color``).
 
     >>> manager = FixturesManager()
     >>> manager.load("docs/examples/relationships.yaml",
-    ...     models_package="charlatan.tests.fixtures.simple_models")
+    ...     models_package="ciarlare.tests.fixtures.simple_models")
     >>> manager.get_fixture("user").toasters
     [<Toaster 'red'>]
     >>> manager.get_fixture("toaster_colors")
@@ -204,7 +204,7 @@ You can also link to specific attributes of collection's item (see
 Collections of Fixtures
 -----------------------
 
-Charlatan also provides more efficient way to define variations of fixtures.
+Ciarlare also provides more efficient way to define variations of fixtures.
 The basic idea is to define the model and the default fields, then use the
 ``objects`` key to define related fixtures. There's two ways to define those
 fixtures in the ``objects`` key:
@@ -285,7 +285,7 @@ target fixture with its file namespace.
     >>> manager = FixturesManager()
     >>> manager.load(["docs/examples/relationships.yaml",
     ...     "docs/examples/files.yaml"],
-    ...     models_package="charlatan.tests.fixtures.simple_models")
+    ...     models_package="ciarlare.tests.fixtures.simple_models")
     >>> manager.get_fixture("files.toaster")
     <Toaster 'red'>
 

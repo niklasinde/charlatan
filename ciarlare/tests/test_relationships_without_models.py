@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from charlatan import testcase, testing, FixturesManager
+from ciarlare import testcase, testing, FixturesManager
 
 
 class TestRelationshipsWithoutModels(testing.TestCase,
@@ -9,7 +9,7 @@ class TestRelationshipsWithoutModels(testing.TestCase,
     def setUp(self):
         self.fixtures_manager = FixturesManager()
         self.fixtures_manager.load(
-            './charlatan/tests/data/relationships_without_models.yaml')
+            './ciarlare/tests/data/relationships_without_models.yaml')
         self.install_fixtures([
             'dict_with_nest', 'simple_dict', 'list_of_relationships'])
         self.init_fixtures()

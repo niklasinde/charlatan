@@ -1,4 +1,4 @@
-Changelog for Charlatan
+Changelog for Ciarlare
 =======================
 
 0.4.8 (unreleased)
@@ -38,7 +38,7 @@ Changelog for Charlatan
 
 - **Breaking change**: the ``!now`` YAML command now returns timezone-aware
   datetime by default. You can change that behavior by changing
-  `charlatan.file_format.TIMEZONE_AWARE`.
+  `ciarlare.file_format.TIMEZONE_AWARE`.
 - Fixed bug where uninstalling a sqlalchemy fixture would not commit the delete
   to the session.
 - Fixed bug where dict fixtures could not reference fields from other collections of dicts.
@@ -56,14 +56,14 @@ Changelog for Charlatan
 ------------------
 
 - **Breaking change**: ``get_builder`` and ``delete_builder`` arguments were
-  added to :py:class:`charlatan.FixturesManager`.
+  added to :py:class:`ciarlare.FixturesManager`.
 - **Breaking change**: ``delete_instance``, ``save_instance`` methods were
   deleted in favor of using builders (see below).
 - **Breaking change**: ``fields`` argument on
-  :py:class:`charlatan.fixture.Fixture` and fixtures collection class has
+  :py:class:`ciarlare.fixture.Fixture` and fixtures collection class has
   been renamed ``overrides`` for consistency reasons.
 - **Breaking change**: ``attrs`` argument on
-  :py:class:`charlatan.FixturesManager` been renamed ``overrides`` for
+  :py:class:`ciarlare.FixturesManager` been renamed ``overrides`` for
   consistency reasons.
 - **Breaking change**: deleting fixtures will not return anything. It used to
   return the fixture or list of fixtures that were successfully deleted. It has
@@ -72,11 +72,11 @@ Changelog for Charlatan
   to customize deletion.
 - **Breaking change**: ``do_not_save`` and ``do_not_delete`` arguments have
   been removed from all functions, in favor of using builders.
-- The notion of :py:class:`charlatan.builder.Builder` was added. This allows
+- The notion of :py:class:`ciarlare.builder.Builder` was added. This allows
   customizing how fixtures are instantiated and installed. A ``builder``
   argument has been added to most method dealing with getting, installing or
   deleting fixtures. Sane defaults have been added in most places.
-- Improve documentation about using pytest with charlatan.
+- Improve documentation about using pytest with ciarlare.
 - Fix bug preventing being able to load multiple fixtures file.
 
 0.3.12 (2015-01-14)
@@ -148,13 +148,13 @@ Changelog for Charlatan
 - Numerous tests added, a lot of cleanup.
 - Clarification in documentation.
 - Remove ``load``, ``set_hook`` and ``install_all_fixtures`` shortcuts from
-  charlatan package.
-- Remove ``FIXTURES_MANAGER`` singleton. Remove ``charlatan.fixtures_manager``
+  ciarlare package.
+- Remove ``FIXTURES_MANAGER`` singleton. Remove ``ciarlare.fixtures_manager``
   shortcut.
 - Remove ``db_session`` argument to ``FixturesManager.load``.
 - Add ``db_session`` argument to ``FixturesManager`` constructor.
 - Remove ``charlatan.fixtures_manager.FixturesMixin``. Replaced by
-  ``charlatan.testcase.FixturesManagerMixin``.
+  ``ciarlare.testcase.FixturesManagerMixin``.
 - ``FixturesManagerMixin`` now exposes pretty much the same method as
   ``FixturesManager``.
 - ``FixturesManagerMixin``'s ``use_fixtures_manager`` was renamed

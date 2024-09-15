@@ -1,15 +1,15 @@
 from __future__ import absolute_import
 import operator as op
 
-from charlatan import testing
-from charlatan import FixturesManager
+from ciarlare import testing
+from ciarlare import FixturesManager
 
 
 class TestListOfFixtures(testing.TestCase):
 
     def setUp(self):
         self.fm = FixturesManager()
-        self.fm.load('./charlatan/tests/data/lists.yaml')
+        self.fm.load('./ciarlare/tests/data/lists.yaml')
 
     def test_get_list_by_name(self):
         """Verify that lists of fixtures returns lists."""

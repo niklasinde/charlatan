@@ -20,10 +20,10 @@ tu:
 	py.test
 
 lint:
-	flake8 charlatan
+	flake8 ciarlare
 
 coverage:
-	coverage run --source charlatan setup.py test
+	coverage run --source ciarlare setup.py test
 	coverage report -m
 	coverage html
 	open htmlcov/index.html

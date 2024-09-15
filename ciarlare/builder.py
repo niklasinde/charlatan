@@ -1,4 +1,4 @@
-from charlatan.utils import is_sqlalchemy_model
+from ciarlare.utils import is_sqlalchemy_model
 
 
 class Builder:

@@ -6,7 +6,7 @@ import operator
 import re
 from collections.abc import Sequence, Mapping
 
-from charlatan import _compat
+from ciarlare import _compat
 
 VALID_SIGNS = frozenset(['-', '+'])
 

@@ -4,26 +4,26 @@ API Reference
 FixturesManager
 ---------------
 
-.. autoclass:: charlatan.FixturesManager
+.. autoclass:: ciarlare.FixturesManager
     :members:
 
 
 FixturesManagerMixin
 --------------------
 
-.. autoclass:: charlatan.FixturesManagerMixin
+.. autoclass:: ciarlare.FixturesManagerMixin
     :members:
 
 
 Fixture
 -------
 
-.. autoclass:: charlatan.Fixture
+.. autoclass:: ciarlare.Fixture
     :members:
 
 
 Utils
 -----
 
-.. automodule:: charlatan.utils
+.. automodule:: ciarlare.utils
     :members:

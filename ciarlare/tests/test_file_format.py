@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from sys import version_info
 import datetime
 
 import yaml
@@ -8,19 +7,18 @@ from yaml import add_constructor
 from yaml.constructor import SafeConstructor
 import pytest
 import pytz
-import unittest
 
-from charlatan import testing
-from charlatan import file_format
-from charlatan.utils import datetime_to_epoch_in_ms
-from charlatan.utils import datetime_to_epoch_timestamp
+from ciarlare import testing
+from ciarlare import file_format
+from ciarlare.utils import datetime_to_epoch_in_ms
+from ciarlare.utils import datetime_to_epoch_timestamp
 
 
 def test_non_yaml_file():
     """Verify that we can't open a non-YAML file."""
     with pytest.raises(ValueError):
         file_format.load_file(
-            "./charlatan/tests/data/test.json",
+            "./ciarlare/tests/data/test.json",
             yaml_loader=yaml.UnsafeLoader
         )
 
@@ -32,7 +30,7 @@ class TestFileFormat(testing.TestCase):
         self.current_time = datetime.datetime.utcnow().replace(
             tzinfo=pytz.utc)
         self.yaml = file_format.load_file(
-            './charlatan/tests/data/special_tags.yaml',
+            './ciarlare/tests/data/special_tags.yaml',
             yaml_loader=yaml.UnsafeLoader
         )
 
@@ -87,7 +85,7 @@ class TestUnicodeLoad(testing.TestCase):
             u'tag:yaml.org,2002:str'
         ]
         self.yaml = file_format.load_file(
-            './charlatan/tests/data/unicode.yaml',
+            './ciarlare/tests/data/unicode.yaml',
             yaml_loader=yaml.UnsafeLoader,
             use_unicode=True,
         )
@@ -101,7 +99,7 @@ class TestStringLoad(testing.TestCase):
 
     def setUp(self):
         self.yaml = file_format.load_file(
-            './charlatan/tests/data/strings.yaml',
+            './ciarlare/tests/data/strings.yaml',
             yaml_loader=yaml.UnsafeLoader
         )
 

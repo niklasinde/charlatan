@@ -7,6 +7,6 @@ install:
   - "pip install -r requirements-test.txt"
   - "python setup.py develop"
 
-script: flake8 charlatan && coverage run --source charlatan setup.py test
+script: flake8 ciarlare && coverage run --source ciarlare setup.py test
 
 after_success: coveralls

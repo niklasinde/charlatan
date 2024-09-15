@@ -77,9 +77,9 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/charlatan.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/ciarlare.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/charlatan.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/ciarlare.qhc"
 
 devhelp:
 	$(SPHINXBUILD) -b devhelp $(ALLSPHINXOPTS) $(BUILDDIR)/devhelp

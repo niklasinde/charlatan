@@ -1,7 +1,7 @@
 # flake8: noqa
 # -*- coding: utf-8 -*-
 #
-# charlatan documentation build configuration file, created by
+# ciarlare documentation build configuration file, created by
 # sphinx-quickstart on Wed Feb  6 11:21:22 2013.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -17,7 +17,7 @@ import sys
 import os
 import importlib
 
-from charlatan import __version__
+from ciarlare import __version__
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'charlatan'
+project = u'ciarlare'
 copyright = u'2013, Charles-Axel Dein (Uber)'
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -246,7 +246,7 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'charlatan'
+epub_title = u'ciarlare'
 epub_author = u'Charles-Axel Dein'
 epub_publisher = u'Charles-Axel Dein'
 epub_copyright = u'2013, Charles-Axel Dein'

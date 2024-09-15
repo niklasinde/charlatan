@@ -1,2 +1,2 @@
 [run]
-omit = charlatan/_compat.py
+omit = ciarlare/_compat.py

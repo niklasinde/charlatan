@@ -3,7 +3,7 @@ Installation
 
 From PyPI::
 
-    $ pip install charlatan
+    $ pip install ciarlare
 
 From sources::
 

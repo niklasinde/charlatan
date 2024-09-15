@@ -1,12 +1,13 @@
 import copy
 import importlib
 
-from charlatan import _compat
-from charlatan.file_format import RelationshipToken
-from charlatan.utils import safe_iteritems, richgetter, deep_update
+from ciarlare import _compat
+from ciarlare.file_format import RelationshipToken
+from ciarlare.utils import safe_iteritems, richgetter, deep_update
 
 CAN_BE_INHERITED = frozenset(
-    ["model_name", "models_package", "fields", "post_creation", "depend_on"])
+    ["model_name", "models_package", "fields", "post_creation", "depend_on"]
+)
 
 
 def get_class(module, klass):
@@ -24,7 +25,7 @@ def get_class(module, klass):
     return cls
 
 
-class Inheritable(object):
+class Inheritable:
 
     def __init__(self, *args, **kwargs):
         # This is to make sure we don't redo the inheritance twice, for
@@ -151,7 +152,6 @@ class Fixture(Inheritable):
             object_class = self.get_class()
             # No need to create a new object, just get it from the db
             instance = self.fixture_manager.session.get(object_class, self.database_id)
-
 
         else:
             # We need to do a copy since we're modifying them.

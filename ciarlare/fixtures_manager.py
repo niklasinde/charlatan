@@ -6,12 +6,12 @@ import os
 
 import yaml
 
-from charlatan import _compat
-from charlatan import builder
-from charlatan.depgraph import DepGraph
-from charlatan.file_format import load_file
-from charlatan.fixture import Fixture
-from charlatan import fixture_collection
+from ciarlare import _compat
+from ciarlare import builder
+from ciarlare.depgraph import DepGraph
+from ciarlare.file_format import load_file
+from ciarlare.fixture import Fixture
+from ciarlare import fixture_collection
 
 ALLOWED_HOOKS = ("before_save", "after_save", "before_install",
                  "after_install")

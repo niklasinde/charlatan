@@ -1,4 +1,4 @@
-from charlatan.utils import deep_update
+from ciarlare.utils import deep_update
 
 
 def test_deep_update():

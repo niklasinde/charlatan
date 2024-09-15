@@ -1,4 +1,4 @@
-.. charlatan documentation master file, created by
+.. ciarlare documentation master file, created by
    sphinx-quickstart on Wed Feb  6 11:21:22 2013.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -9,7 +9,7 @@ Welcome to Charlatan's documentation! [unmaintained]
 .. WARNING::
     This repository is not actively maintained anymore.
 
-Charlatan is a library that lets you efficiently manage and install
+Ciarlare is a library that lets you efficiently manage and install
 fixtures.
 
 Its features include:
@@ -26,7 +26,7 @@ simple to define and install fixtures for your tests.
 
 Charlatan supports Python 2 (only tested with 2.7) and 3 (tested with 3.3).
 
-**Why Charlatan?** Since "charlatan" used to define "an itinerant seller of
+**Why Ciarlare?** Since "charlatan" used to define "an itinerant seller of
 supposed remedies", we thought it would be a good name for a library providing
 fixtures for tests. Credit for the name goes to Zack Heller.
 

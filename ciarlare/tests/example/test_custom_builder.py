@@ -1,5 +1,5 @@
-from charlatan import FixturesManager
-from charlatan.builder import Builder
+from ciarlare import FixturesManager
+from ciarlare.builder import Builder
 
 
 class Toaster(object):
@@ -21,5 +21,5 @@ class DictBuilder(Builder):
 
 def test_custom_builder():
     manager = FixturesManager(get_builder=DictBuilder())
-    manager.load('./charlatan/tests/example/data/custom_builder.yaml')
+    manager.load('./ciarlare/tests/example/data/custom_builder.yaml')
     assert manager.get_fixture('toaster').slots == 3

@@ -1,5 +1,5 @@
-from charlatan import _compat, utils
-from charlatan.fixture import Inheritable
+from ciarlare import _compat, utils
+from ciarlare.fixture import Inheritable
 
 
 def _sorted_iteritems(dct):
@@ -53,16 +53,14 @@ class FixtureCollection(Inheritable):
             return self.get_all_instances(overrides=overrides, builder=builder)
 
         remaining_path = ''
+        first_level = ''
         if isinstance(path, _compat.string_types):
             path = path.split(".")
             first_level = path[0]
             remaining_path = ".".join(path[1:])
-
         # First try to get the fixture from the cache
         instance = self.fixture_manager.cache.get(first_level)
-        if (not overrides
-            and instance
-            and not isinstance(instance, FixtureCollection)):
+        if not overrides and instance and not isinstance(instance, FixtureCollection):
             if not remaining_path:
                 return instance
             return utils.richgetter(instance, remaining_path)

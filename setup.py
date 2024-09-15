@@ -35,7 +35,7 @@ class PyTest(Command):
 
 
 main_ns = {}
-ver_path = convert_path('charlatan/version.py')
+ver_path = convert_path('ciarlare/version.py')
 with open(ver_path) as ver_file:
     exec(ver_file.read(), main_ns)
 
@@ -47,7 +47,7 @@ setup(
     license="MIT",
     cmdclass={'test': PyTest},
     url="https://github.com/uber/charlatan",
-    packages=["charlatan"],
+    packages=["ciarlare"],
     keywords=["tests", "fixtures", "database"],
     description="Efficiently manage and install data fixtures",
     long_description=read_long_description(),

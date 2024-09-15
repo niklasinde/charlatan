@@ -1,21 +1,32 @@
-name: devops main
+name: ciarlare main
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ main]
 jobs:
-  pypi-publish:
-    name: Upload release to PyPI
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/p/ciarlare
-    permissions:
-      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
-    steps:
-      # retrieve your distributions here
 
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: print ls
+        run: ls
+#  pypi-publish:
+#    name: Upload release to PyPI
+#    runs-on: ubuntu-latest
+#    environment:
+#      name: pypi
+#      url: https://pypi.org/p/ciarlare
+#    permissions:
+#      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+#    steps:
+#      # retrieve your distributions here
+#
+#      - name: Publish package distributions to PyPI
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        with:
+#            password: ${{ secrets.PYPI_TOKEN }}
+#
+##        PYPI_TOKEN

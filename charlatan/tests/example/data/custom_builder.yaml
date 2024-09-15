@@ -1,5 +1,0 @@
-toaster:
-  model: charlatan.tests.example.test_custom_builder:Toaster
-  fields:
-    slots: 3
-    color: blue

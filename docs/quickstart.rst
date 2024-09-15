@@ -6,7 +6,7 @@ A simple example
 
 Let's say we have the following model:
 
-.. literalinclude:: ../charlatan/tests/fixtures/simple_models.py
+.. literalinclude:: ../ciarlare/tests/fixtures/simple_models.py
     :language: python
 
 Let's define a very simple fixtures YAML file:
@@ -23,12 +23,12 @@ In this example:
 * ``!rel`` lets you create relationships by pointing to another fixture key.
 
 You first need to load a fixtures file (do it once for the whole test suite)
-with :py:meth:`charlatan.FixturesManager.load`:
+with :py:meth:`ciarlare.FixturesManager.load`:
 
 .. doctest::
 
-    >>> import charlatan
-    >>> fixtures_manager = charlatan.FixturesManager()
+    >>> import ciarlare
+    >>> fixtures_manager = ciarlare.FixturesManager()
     >>> fixtures_manager.load("./docs/examples/simple_fixtures.yaml",
     ...     models_package="toaster.models")
     >>> toaster = fixtures_manager.install_fixture("toaster")
@@ -65,10 +65,10 @@ You can also use inheritance:
 Using charlatan in test cases
 -----------------------------
 
-`Charlatan` works best when used with :py:class:`unittest.TestCase`. Your test
-class needs to inherit from :py:class:`charlatan.FixturesManagerMixin`.
+`Ciarlare` works best when used with :py:class:`unittest.TestCase`. Your test
+class needs to inherit from :py:class:`ciarlare.FixturesManagerMixin`.
 
-`Charlatan` uses an internal cache to store fixtures instance (in particular to
+`Ciarlare` uses an internal cache to store fixtures instance (in particular to
 create relationships). If you are resetting your database after each tests
 (using transactions or by manually truncating all tables), you need to clean
 the cache in :py:meth:`TestCase.setUp`, otherwise `Charlatan` will try
@@ -81,7 +81,7 @@ Using fixtures
 --------------
 
 There are multiple ways to require and use fixtures. When you install a fixture
-using the :py:class:`charlatan.FixturesManagerMixin`, it gets attached to the
+using the :py:class:`ciarlare.FixturesManagerMixin`, it gets attached to the
 instance and can be accessed as an instance attribute (e.g. ``self.toaster``).
 
 For each tests, in setUp and tearDown
@@ -112,7 +112,7 @@ For a single test
 With pytest
 """""""""""
 
-It's extremely easy to use charlatan with pytest. There are multiple ways to
+It's extremely easy to use ciarlare with pytest. There are multiple ways to
 achieve nice readability, here's one possibility.
 
 In ``conftest.py``:
@@ -164,8 +164,8 @@ or :ref:`builders`):
    for more information).
 3. The fixture is then saved. If it's a sqlalchemy model, charlatan will detect
    it, add it to the session and commit it (``db_session.add(instance); db_session.commit()``).
-   If it's not a sqlalchemy model, charlatan will try to call a `save` method
-   on the instance. If there's no such method, charlatan will do nothing.
+   If it's not a sqlalchemy model, ciarlare will try to call a `save` method
+   on the instance. If there's no such method, ciarlare will do nothing.
 
 :ref:`hooks` are also supported.
 
@@ -184,4 +184,4 @@ ways to handle test tear down:
 * Install and uninstall fixtures explicitly (you have to keep track of them
   though, if you forget to uninstall one fixture it will leak in the other
   tests). See
-  :py:meth:`charlatan.FixturesManager.uninstall_fixture`.
+  :py:meth:`ciarlare.FixturesManager.uninstall_fixture`.

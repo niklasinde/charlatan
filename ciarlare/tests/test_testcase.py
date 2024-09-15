@@ -2,14 +2,14 @@ from __future__ import absolute_import
 
 import mock
 
-from charlatan import testcase
-from charlatan import testing
-from charlatan import FixturesManager
-from charlatan.builder import Builder
+from ciarlare import testcase
+from ciarlare import testing
+from ciarlare import FixturesManager
+from ciarlare.builder import Builder
 
 fixtures_manager = FixturesManager()
 fixtures_manager.load(
-    './charlatan/tests/data/relationships_without_models.yaml')
+    './ciarlare/tests/data/relationships_without_models.yaml')
 
 
 class TestTestCase(testing.TestCase, testcase.FixturesManagerMixin):
@@ -84,7 +84,7 @@ class TestTestCase(testing.TestCase, testcase.FixturesManagerMixin):
         self.assertEqual(dict_with_nest['field1'], 'asdlkf')
         self.assertEqual(dict_with_nest['field2'], 4)
 
-    @mock.patch('charlatan.FixturesManager.get_fixture')
+    @mock.patch('ciarlare.FixturesManager.get_fixture')
     def test_get_fixtures_builder(self, mocked_get_fixture):
         """Verify builder instance passed to inner get_fixture call."""
         builder = Builder()

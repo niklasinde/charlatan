@@ -28,5 +28,5 @@ The following hooks are available:
   accept a single argument that will be the exception that may have been raised
   during the whole process. This function is guaranteed to be called.
 
-.. automethod:: charlatan.FixturesManager.set_hook
+.. automethod:: ciarlare.FixturesManager.set_hook
     :noindex:

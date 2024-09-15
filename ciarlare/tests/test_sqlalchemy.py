@@ -1,9 +1,9 @@
 import os
 
-from charlatan import testing
-from charlatan import FixturesManager
-from charlatan.tests.fixtures.models import Session, Base, engine
-from charlatan.tests.fixtures.models import Toaster, Color
+from ciarlare import testing
+from ciarlare import FixturesManager
+from ciarlare.tests.fixtures.models import Session, Base, engine
+from ciarlare.tests.fixtures.models import Toaster, Color
 
 root_dir = os.path.dirname(os.path.abspath(__file__))  # This is your Project Root
 

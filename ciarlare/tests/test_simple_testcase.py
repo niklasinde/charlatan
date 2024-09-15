@@ -1,12 +1,12 @@
 import unittest
 
-import charlatan
+import ciarlare
 
-fixtures_manager = charlatan.FixturesManager()
+fixtures_manager = ciarlare.FixturesManager()
 fixtures_manager.load("./docs/examples/simple_fixtures.yaml")
 
 
-class TestToaster(unittest.TestCase, charlatan.FixturesManagerMixin):
+class TestToaster(unittest.TestCase, ciarlare.FixturesManagerMixin):
 
     def setUp(self):
         # Attach the fixtures manager to the instance

@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from charlatan import testing
-from charlatan.utils import richgetter
+from ciarlare import testing
+from ciarlare.utils import richgetter
 
 
 class TestRichGetter(testing.TestCase):

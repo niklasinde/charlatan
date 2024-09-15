@@ -1,4 +1,4 @@
-Charlatan: Fixtures Made Easy [unmaintained]
+Ciarlare: Fixtures Made Easy [unmaintained]
 ============================================
 
 **Efficiently manage and install data fixtures**
@@ -9,9 +9,7 @@ Charlatan: Fixtures Made Easy [unmaintained]
 .. image:: https://coveralls.io/repos/uber/charlatan/badge.png
   :target: https://coveralls.io/r/uber/charlatan
 
-**⚠️ This repository is not actively maintained anymore.**
-
-`Charlatan` is a library that you can use in your tests to create database
+`Ciarlare` is a library that you can use in your tests to create database
 fixtures. Its aim is to provide a pragmatic interface that focuses on making it
 simple to define and install fixtures for your tests. It is also agnostic in so
 far as even though it's designed to work out of the box with SQLAlchemy models,
@@ -28,7 +26,7 @@ Installation
 
 Using `pip`::
 
-    $ pip install charlatan_new
+    $ pip install ciarlare
 
 License
 -------

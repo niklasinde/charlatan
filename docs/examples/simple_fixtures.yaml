@@ -3,7 +3,7 @@ toaster:   # The fixture's name
     color: red
     slots: 5
     content: !rel toasts  # You can reference other fixtures
-  model: charlatan.tests.fixtures.simple_models:Toaster
+  model: ciarlare.tests.fixtures.simple_models:Toaster
 
 toaster_green:
   # Charlatan also supports inheritance

@@ -1,6 +1,6 @@
 import pytest
 
-from charlatan import FixturesManager
+from ciarlare import FixturesManager
 
 
 def get_collection(collection):

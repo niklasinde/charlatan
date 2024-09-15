@@ -1,6 +1,6 @@
-from charlatan.utils import copy_docstring_from
-from charlatan import FixturesManager
-from charlatan.fixtures_manager import make_list
+from ciarlare.utils import copy_docstring_from
+from ciarlare import FixturesManager
+from ciarlare.fixtures_manager import make_list
 
 
 class FixturesManagerMixin(object):

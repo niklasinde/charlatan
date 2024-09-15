@@ -4,10 +4,9 @@ import datetime
 import pytz
 import yaml
 from yaml.constructor import Constructor
-from yaml import Loader
-from charlatan.utils import datetime_to_epoch_in_ms
-from charlatan.utils import datetime_to_epoch_timestamp
-from charlatan.utils import get_timedelta
+from ciarlare.utils import datetime_to_epoch_in_ms
+from ciarlare.utils import datetime_to_epoch_timestamp
+from ciarlare.utils import get_timedelta
 
 TIMEZONE_AWARE = True
 
@@ -104,7 +103,7 @@ def configure_output(use_unicode=False):
     :param bool use_unicode: Use unicode constructor for loading strings
     """
     if use_unicode:
-        yaml.add_constructor(u'tag:yaml.org,2002:str',Constructor.construct_python_unicode)
+        yaml.add_constructor(u'tag:yaml.org,2002:str', Constructor.construct_python_unicode)
 
 
 def load_file(filename, yaml_loader, use_unicode=False):
