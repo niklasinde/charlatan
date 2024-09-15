@@ -27,4 +27,3 @@ freezegun
 # For tests
 sqlalchemy
 schematics
-distutils
