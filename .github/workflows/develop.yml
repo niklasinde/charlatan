@@ -36,7 +36,7 @@ jobs:
     steps:
       # retrieve your distributions here
       - name: print ls
-        run: ls
+        run: ls .git
       - name: Build release distributions
         run: |
           # NOTE: put your own distribution build steps here.
